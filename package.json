@@ -1,0 +1,11 @@
+{
+  "name": "simple-table",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^0.34.1",
+    "rollup-plugin-json": "^2.0.1"
+  }
+}
