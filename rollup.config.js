@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel'
+import babelrc from 'babelrc-rollup'
 
 export default {
   entry: 'src/main.js',
@@ -6,5 +7,5 @@ export default {
   format: 'umd',
   moduleName: 'simpleTable',
   sourceMap: true,
-  plugins: [ babel() ]
+  plugins: [ babel(babelrc()) ]
 }
