@@ -1,11 +1,12 @@
+import { createSimpleTable, createTableBody } from '../src/main'
 import { strictEqual } from 'assert'
 
 describe('createTable', () => {
   it('basic test', () => {
+      createSimpleTable()
       strictEqual(0, 0)
   })
-  it('basic test FAIL', () => {
-      strictEqual(0, 2)
+  it('test dependency', () => {
+      strictEqual(createTableBody(), 2)
   })
 })
-console.log('Run')
