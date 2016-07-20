@@ -1,5 +1,3 @@
-export default { createTable }
-
-function createTable() {
-  console.log('createTable')
+export default {
+  createSimpleTable: () => console.log('Hello table here')
 }
