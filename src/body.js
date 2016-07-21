@@ -5,8 +5,16 @@ import _ from 'underscore'
 export function createBody() {
   const layout = createBodyLayout()
 
+  let selected = []
+
   function body(s) {
     s.each(bodyEach)
+  }
+
+  body.selected = function(value) {
+    if (!arguments.length) return selected
+    selected = value
+    return body
   }
 
   return body
@@ -28,6 +36,7 @@ export function createBody() {
 
         , cellUpdate = rowEnter
             .merge(rowUpdate)
+              .classed('is-selected', isSelected)
             .selectAll('td')
             .data((d) => d)
 
@@ -35,6 +44,10 @@ export function createBody() {
         , cellExit = cellUpdate.exit().remove()
 
     cellEnter.merge(cellUpdate).text(cellText)
+  }
+
+  function isSelected(d) {
+    return selected.indexOf(d.row) >= 0
   }
 
   function cellText(cell) {
