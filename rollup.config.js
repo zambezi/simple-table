@@ -6,6 +6,10 @@ export default {
   dest: 'dist/simple-table.js',
   format: 'umd',
   moduleName: 'simpleTable',
+  external: [ 'd3-selection' ],
   sourceMap: true,
-  plugins: [ babel(babelrc()) ]
+  plugins: [ babel(babelrc()) ],
+  globals: {
+    'd3-selection': 'd3'
+  }
 }

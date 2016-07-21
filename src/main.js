@@ -1,5 +1,12 @@
+import { select } from 'd3-selection'
+
 export function createSimpleTable() {
-  console.log('Hello table here')
+
+  function table(s) {
+    select(s.node()).text('I am a simple table')
+  }
+
+  return table
 }
 
 export function createTableBody() {
