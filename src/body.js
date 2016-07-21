@@ -9,6 +9,9 @@ export function createBody() {
   return body
 
   function bodyEach(d, i) {
-    select(this).text('I am a table body')
+    const rows = d
+        , rowUpdate = select(this).selectAll('li').data(rows)
+
+    rowUpdate.enter().append('li').text((d) => JSON.stringify(d))
   }
 }
