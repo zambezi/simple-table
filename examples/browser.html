@@ -1,0 +1,25 @@
+<!doctype html>
+<h2>simple table example</h2>
+<div id="target"></div>
+<script src="../node_modules/d3-selection/build/d3-selection.js"></script>
+<script src="../node_modules/underscore/underscore.js"></script>
+<script src="../dist/simple-table.js"></script>
+<script>
+  var rows = [
+        {
+          name: 'Álvaro'
+        , email: 'alvaro@example.com'
+        , address: { city: 'London' }
+        , price: 234234.23433223
+        }
+      , {
+          name: 'Ignacio'
+        , email: 'ignacio@example.com'
+        , address: { city: 'London' }
+        , price: 111111.234234234
+        }
+      ]
+    , body = simpleTable.createBody()
+
+  d3.select('#target').datum(rows).call(body)
+</script>
