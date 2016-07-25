@@ -35,6 +35,8 @@
     , body = simpleTable.createBody()
         .columns(columns)
         .on('select', addToSelection)
+    , head = simpleTable.createHeader()
+        .columns(columns)
     , target = d3.select('#target').datum(rows)
 
   body.selected([ rows[1] ])
@@ -42,6 +44,7 @@
   draw()
 
   function draw() {
+    target.call(head)
     target.call(body)
   }
 
