@@ -28,6 +28,7 @@ export function createHeader() {
     cell.enter().append('th')
       .merge(cell)
         .text((d) => d.label)
+        .attr('class', (d) => d.className)
 
     cell.exit().remove()
 

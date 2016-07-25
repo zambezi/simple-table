@@ -41,6 +41,7 @@ export function createBody() {
     cell.enter().append('td')
       .merge(cell)
         .text(cellText)
+        .attr('class', cellClass)
 
     cell.exit().remove()
 
@@ -53,6 +54,12 @@ export function createBody() {
 
   function isSelected(d) {
     return selected.indexOf(d.row) >= 0
+  }
+
+  function cellClass(cell) {
+    return _.isFunction(cell.column.className)
+            ? cell.column.className(cellValue(cell))
+            : cell.column.className
   }
 
   function cellText(cell) {
