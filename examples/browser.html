@@ -35,26 +35,24 @@
       , { format: (r) => r.address.city, label: 'City' }
       , { key: 'price', label: 'Price', format: (p) => p.toFixed(3) }
       ]
-    , body = simpleTable.createBody()
+    , table = simpleTable.createTable()
         .columns(columns)
         .on('select', addToSelection)
-    , head = simpleTable.createHeader()
-        .columns(columns)
     , target = d3.select('#target').datum(rows)
 
-  body.selected([ rows[1] ])
+  table.headers(true)
+  table.selected([ rows[1] ])
 
   draw()
 
   function draw() {
-    target.call(head)
-    target.call(body)
+    target.call(table)
   }
 
   function addToSelection(row) {
-    body.selected([ row ]) // Basic single selection
-                           // You can potentially append to this list instead
-                           // to achieve multiple selection.
+    table.selected([ row ]) // Basic single selection
+                            // You can potentially append to this list instead
+                            // to achieve multiple selection.
     draw()
   }
 </script>
