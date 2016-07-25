@@ -1,9 +1,12 @@
 import { select } from 'd3-selection'
+import { rebind } from '@zambezi/d3-rebind'
+import { dispatch as createDispatch } from 'd3-dispatch'
 import { createBodyLayout } from './body-layout'
 import _ from 'underscore'
 
 export function createBody() {
   const layout = createBodyLayout()
+    , dispatch = createDispatch('select')
 
   let selected = []
 
@@ -17,21 +20,24 @@ export function createBody() {
     return body
   }
 
-  return body
+  return rebind(body, dispatch, 'on')
 
   function bodyEach(d, i) {
     const rows = layout(d)
         , target = select(this)
         , tBody = target.selectAll('tbody')
-            .data([ 1 ])
-            .enter()
-            .append('tbody')
+            .data([ rows ])
+        , tBodyEnter = tBody.enter().append('tbody')
+        , tBodyInstance = tBodyEnter.merge(tBody)
 
-        , rowUpdate = tBody
+        , rowUpdate = tBodyInstance
               .selectAll('tr')
-              .data(rows)
+              .data((d) => d)
 
-        , rowEnter = rowUpdate.enter().append('tr')
+        , rowEnter = rowUpdate
+            .enter()
+            .append('tr')
+              .on('click', onClick)
         , rowExit = rowUpdate.exit().remove()
 
         , cellUpdate = rowEnter
@@ -44,6 +50,10 @@ export function createBody() {
         , cellExit = cellUpdate.exit().remove()
 
     cellEnter.merge(cellUpdate).text(cellText)
+  }
+
+  function onClick(d) {
+    dispatch.call('select', this, d.row)
   }
 
   function isSelected(d) {
