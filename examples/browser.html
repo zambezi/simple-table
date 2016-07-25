@@ -32,8 +32,8 @@
     , columns = [
         { key: 'name', label: 'Name' }
       , { key: 'email', label: 'Email', className: 'text-light-secondary' }
-      , { format: (r) => r.address.city, label: 'City' }
-      , { key: 'price', label: 'Price', format: (p) => p.toFixed(3) }
+      , { format: addressFormatter, label: 'City' }
+      , { key: 'price', label: 'Price', format: priceFormatter }
       ]
     , table = simpleTable.createTable()
         .columns(columns)
@@ -54,5 +54,13 @@
                             // You can potentially append to this list instead
                             // to achieve multiple selection.
     draw()
+  }
+
+  function addressFormatter(row) {
+    return row.address.city
+  }
+
+  function priceFormatter(price) {
+    return price.toFixed ? price.toFixed(3) : ''
   }
 </script>
