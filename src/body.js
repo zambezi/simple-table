@@ -27,29 +27,24 @@ export function createBody() {
         , target = select(this)
         , tBody = target.selectAll('tbody')
             .data([ rows ])
-        , tBodyEnter = tBody.enter().append('tbody')
-        , tBodyInstance = tBodyEnter.merge(tBody)
-
-        , rowUpdate = tBodyInstance
-              .selectAll('tr')
-              .data((d) => d)
-
-        , rowEnter = rowUpdate
-            .enter()
-            .append('tr')
+        , row = tBody.enter().append('tbody')
+            .merge(tBody)
+            .selectAll('tr')
+            .data((d) => d)
+        , cell = row.enter().append('tr')
               .on('click', onClick)
-        , rowExit = rowUpdate.exit().remove()
-
-        , cellUpdate = rowEnter
-            .merge(rowUpdate)
+            .merge(row)
               .classed('is-selected', isSelected)
             .selectAll('td')
             .data((d) => d)
 
-        , cellEnter = cellUpdate.enter().append('td')
-        , cellExit = cellUpdate.exit().remove()
+    cell.enter().append('td')
+      .merge(cell)
+        .text(cellText)
 
-    cellEnter.merge(cellUpdate).text(cellText)
+    cell.exit().remove()
+
+    row.exit().remove()
   }
 
   function onClick(d) {
