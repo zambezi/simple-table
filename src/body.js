@@ -20,7 +20,7 @@ export function createBody() {
     return body
   }
 
-  return rebind(body, dispatch, 'on')
+  return rebind(rebind(body, layout, 'columns'), dispatch, 'on')
 
   function bodyEach(d, i) {
     const rows = layout(d)

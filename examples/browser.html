@@ -26,7 +26,15 @@
         , price: 111111.234234234
         }
       ]
-    , body = simpleTable.createBody().on('select', addToSelection)
+    , columns = [
+        { key: 'name', label: 'Name' }
+      , { key: 'email', label: 'Email', className: 'text-light-secondary' }
+      , { format: (r) => r.address.city, label: 'City' }
+      , { key: 'price', label: 'Price', format: (p) => p.toFixed(3) }
+      ]
+    , body = simpleTable.createBody()
+        .columns(columns)
+        .on('select', addToSelection)
     , target = d3.select('#target').datum(rows)
 
   body.selected([ rows[1] ])
