@@ -4,7 +4,9 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "test": "mocha"
+    "test": "mocha",
+    "pretest": "npm run build",
+    "prepublish": "npm test"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
