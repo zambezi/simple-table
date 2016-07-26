@@ -8,10 +8,13 @@ export function createTable() {
       , header = createHeader()
 
   let columns
-    , headers
+    , displayHeaders = true
 
   function table(s) {
-    s.each(tableEach)
+    s.call(header.columns(columns))
+        .call(body.columns(columns))
+      .select('thead')
+        .style('display', displayHeaders ? null : 'none')
   }
 
   table.columns = function(value) {
@@ -20,22 +23,11 @@ export function createTable() {
     return table
   }
 
-  table.headers = function(value) {
-    if (!arguments.length) return headers
-    headers = value
+  table.displayHeaders = function(value) {
+    if (!arguments.length) return displayHeaders
+    displayHeaders = value
     return table
   }
 
   return rebind(table, body, 'on', 'selected')
-
-  function tableEach(d, i) {
-    const target = select(this)
-
-    body.columns(columns)
-    header.columns(headers ? columns : [])
-
-    target.datum(d)
-      .call(body)
-      .call(header)
-  }
 }
