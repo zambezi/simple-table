@@ -2,6 +2,10 @@
 
 D3 components to build simple HTML tables from your data.
 
+## Installation
+
+You can `npm i @zambezi/simple-table` the component and can check the 'examples' folder for usage.
+
 ## The simplest case
 
 If you have an array of objects, `dataElements`,
