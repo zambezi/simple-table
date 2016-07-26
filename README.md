@@ -24,31 +24,33 @@ You can configure which columns you want to be displayed.
 * The `className` property, if defined, will set the `className` on the cells it owns. This can also be set to a function for dynamic styling. The function will be invoked with a single argument of the cell's value.
 
 
-    var table = createTable().columns(
-          [
-            { key: 'name' }
-          , { key: 'email', className: 'text-light-secondary' }
-          , { format: (d) => d.address.city }
-          , { key: 'price', format: d3.format('.3f') }
-          ]
-        )
-
-    d3.select('table.target').datum(
+```
+var table = createTable().columns(
       [
-        {
-          name: 'Álvaro'
-        , email: 'alvaro@rbs.com'
-        , address: { city: 'London' }
-        , price: 234234,23433223
-        }
-      , {
-          name: 'Ignacio'
-        , email: 'ignacio@rbs.com'
-        , address: { city: 'London' }
-        , price: 111111,234234234
-        }
+        { key: 'name' }
+      , { key: 'email', className: 'text-light-secondary' }
+      , { format: (d) => d.address.city }
+      , { key: 'price', format: d3.format('.3f') }
       ]
-    ).call(table)
+    )
+
+d3.select('table.target').datum(
+  [
+    {
+      name: 'Álvaro'
+    , email: 'alvaro@rbs.com'
+    , address: { city: 'London' }
+    , price: 234234,23433223
+    }
+  , {
+      name: 'Ignacio'
+    , email: 'ignacio@rbs.com'
+    , address: { city: 'London' }
+    , price: 111111,234234234
+    }
+  ]
+).call(table)
+```
 
 ### Table headers
 
