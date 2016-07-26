@@ -16,22 +16,22 @@ export function createHeader() {
   return header
 
   function headerEach(d, i) {
-    const target = select(this)
-        , tHead = target.selectAll('thead')
+    const row = select(this)
+            .selectAll('thead tr')
             .data([ columns ])
-        , row = tHead.select('tr')
-        , cell = tHead.enter().insert('thead').append('tr')
+        , cells = row.enter()
+            .append('thead')
+            .append('tr')
             .merge(row)
             .selectAll('th')
             .data((d) => d)
 
-    cell.enter().append('th')
-      .merge(cell)
+    cells.enter()
+      .append('th')
+      .merge(cells)
         .text((d) => d.label)
         .attr('class', (d) => d.className)
 
-    cell.exit().remove()
-
-    tHead.exit().remove()
+    cells.exit().remove()
   }
 }
