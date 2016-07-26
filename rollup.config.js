@@ -6,10 +6,12 @@ export default {
   dest: 'dist/simple-table.js',
   format: 'umd',
   moduleName: 'simpleTable',
-  external: [ 'd3-selection', 'underscore' ],
+  external: [ '@zambezi/d3-rebind', 'd3-dispatch', 'd3-selection', 'underscore' ],
   sourceMap: true,
   plugins: [ babel(babelrc()) ],
   globals: {
+    '@zambezi/d3-rebind': 'd3',
+    'd3-dispatch': 'd3',
     'd3-selection': 'd3',
     'underscore': '_'
   }

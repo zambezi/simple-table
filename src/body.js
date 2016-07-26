@@ -1,19 +1,72 @@
 import { select } from 'd3-selection'
+import { rebind } from '@zambezi/d3-rebind'
+import { dispatch as createDispatch } from 'd3-dispatch'
 import { createBodyLayout } from './body-layout'
+import _ from 'underscore'
 
 export function createBody() {
   const layout = createBodyLayout()
+    , dispatch = createDispatch('select')
+
+  let selected = []
 
   function body(s) {
     s.each(bodyEach)
   }
 
-  return body
+  body.selected = function(value) {
+    if (!arguments.length) return selected
+    selected = value
+    return body
+  }
+
+  return rebind(rebind(body, layout, 'columns'), dispatch, 'on')
 
   function bodyEach(d, i) {
     const rows = layout(d)
-        , rowUpdate = select(this).selectAll('li').data(rows)
+        , target = select(this)
+        , tBody = target.selectAll('tbody')
+            .data([ rows ])
+        , row = tBody.enter().append('tbody')
+            .merge(tBody)
+            .selectAll('tr')
+            .data((d) => d)
+        , cell = row.enter().append('tr')
+              .on('click', onClick)
+            .merge(row)
+              .classed('is-selected', isSelected)
+            .selectAll('td')
+            .data((d) => d)
 
-    rowUpdate.enter().append('li').text((d) => JSON.stringify(d))
+    cell.enter().append('td')
+      .merge(cell)
+        .text(cellText)
+        .attr('class', cellClass)
+
+    cell.exit().remove()
+
+    row.exit().remove()
+  }
+
+  function onClick(d) {
+    dispatch.call('select', this, d.row)
+  }
+
+  function isSelected(d) {
+    return selected.indexOf(d.row) >= 0
+  }
+
+  function cellClass(cell) {
+    return _.isFunction(cell.column.className)
+            ? cell.column.className(cellValue(cell))
+            : cell.column.className
+  }
+
+  function cellText(cell) {
+    return (cell.column.format || String)(cellValue(cell))
+  }
+
+  function cellValue(cell) {
+    return _.isUndefined(cell.value) ? '' : cell.value
   }
 }
