@@ -1,5 +1,5 @@
 {
-  "name": "simple-table",
+  "name": "@zambezi/simple-table",
   "version": "0.0.1",
   "scripts": {
     "build": "rollup -c",
