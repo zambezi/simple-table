@@ -112,5 +112,5 @@ function addToSelection(row) {
 
 ## Style
 
-The `body` component does _not_ provide styles.
+The simple-table component does _not_ provide styles.
 You should, if necessary, define yours.
