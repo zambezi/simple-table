@@ -7,10 +7,14 @@ D3 components to build simple HTML tables from your data.
 If you have an array of objects, `dataElements`,
 and a target DOM node that supports `<tr>`s and `<td>`s,
 
-    <table class='target'></table>
+```html
+<table class='target'></table>
+```
 
-    var table = createTable()
-    d3.select('table.target').datum(dataElements).call(table)
+```javascript
+var table = createTable()
+d3.select('table.target').datum(dataElements).call(table)
+```
 
 The component will create one row for each of the elements, and one cell for each of its attributes.
 By default it'll try to represent each of those attributes as a string.
@@ -24,7 +28,7 @@ You can configure which columns you want to be displayed.
 * The `className` property, if defined, will set the `className` on the cells it owns. This can also be set to a function for dynamic styling. The function will be invoked with a single argument of the cell's value.
 
 
-```
+```javascript
 var table = createTable().columns(
       [
         { key: 'name' }
@@ -59,7 +63,7 @@ You can show table headers like this:
 - enable headers
 - put a `label` property for each column definition
 
-```
+```javascript
 table = createTable()
     .displayHeaders(true)
     .columns(
@@ -87,21 +91,23 @@ You can use that to manipulate the `selected` collection and redraw the table.
 
 The logic of how this event should be interpreted is up to the client.
 
-    var target = d3.select('table.target').datum(data)
-      , table = createTable().on('select', addToSelection)
+```javascript
+var target = d3.select('table.target').datum(data)
+  , table = createTable().on('select', addToSelection)
 
-    draw()
+draw()
 
-    function draw() {
-      target.call(table)
-    }
+function draw() {
+  target.call(table)
+}
 
-    function addToSelection(row) {
-      table.selected([ row ]) // Basic single selection
-                              // You can potentially append to this list instead
-                              // to achieve multiple selection.
-      draw()
-    }
+function addToSelection(row) {
+  table.selected([ row ]) // Basic single selection
+                          // You can potentially append to this list instead
+                          // to achieve multiple selection.
+  draw()
+}
+```
 
 
 ## Style
