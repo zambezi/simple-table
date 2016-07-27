@@ -1,12 +1,24 @@
 {
   "name": "@zambezi/simple-table",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "D3 components to build simple HTML tables from your data.",
+  "keywords": [
+    "d3",
+    "table"
+  ],
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "test": "mocha",
     "pretest": "npm run build",
     "prepublish": "npm test"
+  },
+  "license": "MIT",
+  "main": "dist/simple-table.js",
+  "homepage": "https://github.com/zambezi/simple-table",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zambezi/simple-table.git"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
