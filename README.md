@@ -31,7 +31,6 @@ You can configure which columns you want to be displayed.
 * The `format` function will be called once with each row object, or with the row attribute if `key` was also defined.
 * The `className` property, if defined, will set the `className` on the cells it owns. This can also be set to a function for dynamic styling. The function will be invoked with a single argument of the cell's value.
 
-
 ```javascript
 var table = createTable().columns(
       [
@@ -46,13 +45,13 @@ d3.select('table.target').datum(
   [
     {
       name: 'Álvaro'
-    , email: 'alvaro@rbs.com'
+    , email: 'alvaro@abc.com'
     , address: { city: 'London' }
     , price: 234234,23433223
     }
   , {
       name: 'Ignacio'
-    , email: 'ignacio@rbs.com'
+    , email: 'ignacio@def.com'
     , address: { city: 'London' }
     , price: 111111,234234234
     }
@@ -112,7 +111,6 @@ function addToSelection(row) {
   draw()
 }
 ```
-
 
 ## Style
 
