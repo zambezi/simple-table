@@ -8,7 +8,13 @@
     "pretest": "npm run build",
     "prepublish": "npm test"
   },
+  "license": "MIT",
   "main": "dist/simple-table.js",
+  "homepage": "https://github.com/zambezi/simple-table",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zambezi/simple-table.git"
+  },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2015-rollup": "^1.1.1",
