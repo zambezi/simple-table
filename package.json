@@ -1,6 +1,6 @@
 {
   "name": "@zambezi/simple-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "D3 components to build simple HTML tables from your data.",
   "keywords": [
     "d3",
